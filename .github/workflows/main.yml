@@ -79,19 +79,19 @@ jobs:
 
       - name: Build image
         run: |
-            # TAG=${{ needs.versioning.outputs.image_name }}
-            # if [ -z "$TAG" ]; then
-            # echo "TAG is empty, using 'latest' as fallback"
-            # TAG="latest"
-            # fi
+            TAG=${{ needs.versioning.outputs.image_name }}
+            if [ -z "$TAG" ]; then
+            echo "TAG is empty, using 'latest' as fallback"
+            TAG="latest"
+            fi
             docker build -t $IMAGE_REPO:$TAG .
 
       - name: Push image
         run: |
-            # TAG=${{ needs.versioning.outputs.image_name }}
-            # # if [ -z "$TAG" ]; then
-            # # TAG="latest"
-            # # fi
+            TAG=${{ needs.versioning.outputs.image_name }}
+            if [ -z "$TAG" ]; then
+            TAG="latest"
+            fi
             docker push $IMAGE_REPO:$TAG
 
   commit_version:
