@@ -3,6 +3,8 @@ name: CI Pipeline (Multi-job)
 on:
   push:
     branches: [ main ]
+    paths-ignore:
+        - 'app/package.json'
   workflow_dispatch:
 
 env:
